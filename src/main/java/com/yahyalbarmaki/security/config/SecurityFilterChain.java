@@ -1,6 +1,5 @@
 package com.yahyalbarmaki.security.config;
 
-import jakarta.servlet.Filter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,15 +19,15 @@ public class SecurityFilterChain {
     private final AuthenticationProvider authenticationProvider;
 
     @Bean
-    public DefaultSecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+    public DefaultSecurityFilterChain security_FilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers(" ")
-                .permitAll()
+                .requestMatchers("/api/v1/auth/**")
+                    .permitAll()
                 .anyRequest()
-                .authenticated()
+                .   authenticated()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
